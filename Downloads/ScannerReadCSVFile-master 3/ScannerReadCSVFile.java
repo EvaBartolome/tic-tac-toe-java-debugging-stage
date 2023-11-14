@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner; //read contents of the file line by line
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -21,7 +21,7 @@ public class ScannerReadCSVFile {
                 int totalScore = 0; //accumulate the sum of the 10 test scores for the class section (in loop, test scores are added to calculate the overall score for the class section)
 
                 for (int i = 1; i < values.length; i++) { // iterates through 10 test scores for class section--adds them to the totalScore variable
-                  totalScore += Integer.parseInt(values[i]); //convert the string representation of the test score to an integer and adds it to the totalScore variable
+                  totalScore += Integer.parseInt(values[i]); //convert the string representation of test score to integer and adds it to the totalScore variable
                   //i is index to access individual test scores within the values array. values[i] retrieves string representation of test score at index i in values array
                 }
 
