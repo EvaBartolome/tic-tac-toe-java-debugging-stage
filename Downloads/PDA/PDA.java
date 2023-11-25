@@ -9,16 +9,16 @@ import java.util.InputMismatchException;
  */
 public class PDA
 {
-    Scanner scanner = new Scanner(System.in);// Create a Scanner instance as an instance variable
+    Scanner scanner = new Scanner(System.in); // Create a Scanner instance as an instance variable
     int age;
     int LOWER_BOUND = 0;
+    boolean shouldContinue = true;
     /**
      * Constructor for objects of class PDA
      */
     public PDA()
     {
         scanner = new Scanner(System.in); // Instantiate the Scanner using System.in
-
     }
 
     /**
@@ -43,27 +43,29 @@ public class PDA
      * This is the main event loop for our PDA program
      */
     public void runEventLoop() {
-        while (true) {
+        while (shouldContinue = true) {
             System.out.println("How old are you?");
             try {
                 age = scanner.nextInt();
                 System.out.println(age);
+                if (age == 0) {
+                    System.out.println("You entered 0. Exiting the program.");
+                    shouldContinue = false;
+                    break; // Exit the loop
+                }
                 if (age < LOWER_BOUND) {
                     System.out.println(age+" is too young!!");
                 } else {
-                    System.out.println("Computations go here");                
+                    int youngerAge = getYoungerAge(age);
+                    int olderAge = getOlderAge(age);
+                    System.out.println("Youngest Dating Age: " + youngerAge);
+                    System.out.println("Oldest Dating Age: " + olderAge);
                 }
-                int youngerAge = getYoungerAge(age);
-                int olderAge = getOlderAge(age);
-
-                System.out.println("Younger Age Boundary: " + youngerAge);
-                System.out.println("Older Age Boundary: " + olderAge);
             } catch (InputMismatchException error) {
                 scanner.next();
                 System.out.println("Please enter an integer");
             }
         }
-
     }
 
     /**
