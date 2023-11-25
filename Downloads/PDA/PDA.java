@@ -22,6 +22,24 @@ public class PDA
     }
 
     /**
+     * Compute the younger age boundary
+     */
+    private int getYoungerAge(int age) {
+        // Compute younger age boundary based on the formula
+        double youngerAge = age / 2.0 + 7;
+        return (int) Math.floor(youngerAge);
+    }
+
+    /**
+     * Compute the older age boundary
+     */
+    private int getOlderAge(int age) {
+        // Compute older age boundary based on the formula
+        double olderAge = (age - 7) * 2.0;
+        return (int) Math.ceil(olderAge);
+    }
+
+    /**
      * This is the main event loop for our PDA program
      */
     public void runEventLoop() {
@@ -35,6 +53,11 @@ public class PDA
                 } else {
                     System.out.println("Computations go here");                
                 }
+                int youngerAge = getYoungerAge(age);
+                int olderAge = getOlderAge(age);
+
+                System.out.println("Younger Age Boundary: " + youngerAge);
+                System.out.println("Older Age Boundary: " + olderAge);
             } catch (InputMismatchException error) {
                 scanner.next();
                 System.out.println("Please enter an integer");
