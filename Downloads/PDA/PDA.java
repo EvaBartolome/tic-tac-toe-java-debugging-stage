@@ -10,8 +10,10 @@ import java.util.InputMismatchException;
 public class PDA
 {
     Scanner scanner = new Scanner(System.in); // Create a Scanner instance as an instance variable
-    int age;
-    int LOWER_BOUND = 0;
+    int age = 0;
+    int LOWER_BOUND = 14;
+    int realMinAge = 0;
+    int realMaxAge = 0;
     boolean shouldContinue = true;
     /**
      * Constructor for objects of class PDA
@@ -24,42 +26,38 @@ public class PDA
     /**
      * Compute the younger age boundary
      */
-    private int getYoungerAge(int age) {
-        // Compute younger age boundary based on the formula
-        double youngerAge = age / 2.0 + 7;
-        return (int) Math.floor(youngerAge);
+    public void getYoungerAge() {
+        // Compute younger age boundary
+        realMinAge = (int)Math.round((age/2.0)+7);
     }
 
     /**
      * Compute the older age boundary
      */
-    private int getOlderAge(int age) {
-        // Compute older age boundary based on the formula
-        double olderAge = (age - 7) * 2.0;
-        return (int) Math.ceil(olderAge);
+    public void getOlderAge() {
+        // Compute older age boundary
+        realMaxAge = (int)Math.round((age-7)*2.0);
     }
 
     /**
      * This is the main event loop for our PDA program
      */
     public void runEventLoop() {
-        while (shouldContinue = true) {
+        while (shouldContinue == true) {
             System.out.println("How old are you?");
             try {
                 age = scanner.nextInt();
-                System.out.println(age);
                 if (age == 0) {
                     System.out.println("You entered 0. Exiting the program.");
                     shouldContinue = false;
-                    break; // Exit the loop
                 }
-                if (age < LOWER_BOUND) {
-                    System.out.println(age+" is too young!!");
-                } else {
-                    int youngerAge = getYoungerAge(age);
-                    int olderAge = getOlderAge(age);
-                    System.out.println("Youngest Dating Age: " + youngerAge);
-                    System.out.println("Oldest Dating Age: " + olderAge);
+                if (age < LOWER_BOUND && age !=0) {
+                    System.out.println(age + " is too young!!");
+                } else if (age !=0) {
+                    getYoungerAge();
+                    getOlderAge();
+                    System.out.println("Youngest Dating Age: " + realMinAge);
+                    System.out.println("Oldest Dating Age: " + realMaxAge);
                 }
             } catch (InputMismatchException error) {
                 scanner.next();
@@ -76,3 +74,4 @@ public class PDA
         pda.runEventLoop();
     }
 }
+
