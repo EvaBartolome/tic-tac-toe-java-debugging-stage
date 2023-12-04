@@ -10,11 +10,11 @@ import java.util.InputMismatchException;
 public class PDA
 {
     Scanner scanner = new Scanner(System.in); // Create a Scanner instance as an instance variable
-    int age = 0;
-    int LOWER_BOUND = 14;
-    int realMinAge = 0;
-    int realMaxAge = 0;
-    boolean shouldContinue = true;
+    int age = 0; //Stores user age
+    int LOWER_BOUND = 14; //lower age limit for dating, constant--no hard numbers
+    int realMinAge = 0; //store the computed younger boundary
+    int realMaxAge = 0; //store computed older boundary
+    boolean shouldContinue = true; //controls the main event loop
     /**
      * Constructor for objects of class PDA
      */
@@ -26,7 +26,7 @@ public class PDA
     /**
      * Compute the younger age boundary
      */
-    public void getYoungerAge() {
+    public void getYoungerAge() { //*void does not produce result that needs to be returned 
         // Compute younger age boundary
         realMinAge = (int)Math.round((age/2.0)+7);
     }
@@ -53,14 +53,14 @@ public class PDA
                 }
                 if (age < LOWER_BOUND && age !=0) {
                     System.out.println(age + " is too young!!");
-                } else if (age !=0) {
-                    getYoungerAge();
+                } else if (age !=0) { 
+                    getYoungerAge(); //Compute younger and older age boundaries based on user input
                     getOlderAge();
                     System.out.println("Youngest Dating Age: " + realMinAge);
                     System.out.println("Oldest Dating Age: " + realMaxAge);
                 }
             } catch (InputMismatchException error) {
-                scanner.next();
+                scanner.next(); //clear the invalid data and let the scanner proceed normally
                 System.out.println("Please enter an integer");
             }
         }
