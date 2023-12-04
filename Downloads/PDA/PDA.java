@@ -16,7 +16,7 @@ public class PDA
     int realMaxAge = 0; //store computed older boundary
     boolean shouldContinue = true; //controls the main event loop
     /**
-     * Constructor for objects of class PDA
+     * Constructor for objects of class PDA 
      */
     public PDA()
     {
@@ -28,7 +28,8 @@ public class PDA
      */
     public void getYoungerAge() { //*void does not produce result that needs to be returned 
         // Compute younger age boundary
-        realMinAge = (int)Math.round((age/2.0)+7);
+        realMinAge = (int)Math.round((age/2.0)+7); //.0--result is double before rounding then cast to an int.
+        //Gives expected behavior of rounding up when decimal part is 0.5 or greater
     }
 
     /**
@@ -36,7 +37,7 @@ public class PDA
      */
     public void getOlderAge() {
         // Compute older age boundary
-        realMaxAge = (int)Math.round((age-7)*2.0);
+        realMaxAge = (int)Math.round((age-7)*2.0); //no round down b/c it's always whole
     }
 
     /**
@@ -71,7 +72,7 @@ public class PDA
      */
     public static void main (String[] args) {
         PDA pda = new PDA();
-        pda.runEventLoop();
+        pda.runEventLoop(); //user input
     }
 }
 
