@@ -5,38 +5,38 @@ package tictactoe;
  */
 public class State //serves as repo for game info - gameState, xName, oName, etc.
 {
-    private int gameState = Constants.STANDBY;
-    private int whoseMove = Constants.X;
-    private String xName = "";
-    private String oName = "";
-    private int[][] board = new int[Constants.BOARD_SIZE][Constants.BOARD_SIZE];
+    private int gameState = Constants.STANDBY; //current game state
+    private int whoseMove = Constants.X; //keeps track of whose move it is
+    private String xName = ""; //keeps track of player names
+    private String oName = ""; 
+    private int[][] board = new int[Constants.BOARD_SIZE][Constants.BOARD_SIZE]; //keeps track of state of board
 
-    public boolean isWinner() {
+    public boolean isWinner() { //determines if winner
         int total;
-        for (int row=0; row<Constants.BOARD_SIZE; row++) {
+        for (int row=0; row<Constants.BOARD_SIZE; row++) { //Check for winning combinations in rows
             total = getBoardCell(row, 0) + getBoardCell(row,1) + getBoardCell(row,2);
             if (total == -3 || total == 3) return true;
         }
-        for (int col=0; col<Constants.BOARD_SIZE; col++) {
-            total = getBoardCell(0, col) + getBoardCell(1,col) + getBoardCell(2, col);
+        for (int col=0; col<Constants.BOARD_SIZE; col++) { //Check for winning combinations in columns
+             total = getBoardCell(0, col) + getBoardCell(1,col) + getBoardCell(2, col);
             if (total == -3 || total == 3) return true;
         }
-        total = getBoardCell(0, 0) + getBoardCell(1,1) + getBoardCell(2, 2);
+        total = getBoardCell(0, 0) + getBoardCell(1,1) + getBoardCell(2, 2); //Check for winning combinations in diagonals
         if (total == -3 || total == 3) return true;
         total = getBoardCell(2, 0) + getBoardCell(1,1) + getBoardCell(0, 2);
         if (total == -3 || total == 3) return true;
-        return false;
+        return false; //If no winning combinations found, return false
     }
 
     public boolean isTie() {
-        for (int row=0; row<Constants.BOARD_SIZE; row++) {
+        for (int row=0; row<Constants.BOARD_SIZE; row++) { //Iterate over each cell in the game board
             for (int col=0; col<Constants.BOARD_SIZE; col++) {
-                if (getBoardCell(row,col) == Constants.BLANK) {
-                    return false;
+                   if (getBoardCell(row,col) == Constants.BLANK) { //If any cell is blank, the game is not a tie
+                     return false;
                 }
             }
         }
-        return true;
+        return true; //If all cells filled and no winner detected, tie game
     }
 
     public int getGameState() { //current state of game: standby, get player names, making moves, etc.
@@ -51,15 +51,15 @@ public class State //serves as repo for game info - gameState, xName, oName, etc
         return whoseMove;
     }
 
-    public void setWhoseMove(int whoseMove){
+    public void setWhoseMove(int whoseMove){ //takes an integer parameter whoseMove and assigns it to the whoseMove variable
         this.whoseMove = whoseMove;
     }
 
-    public String getXName() {
+    public String getXName() { //returns the value of the xName variable.
         return xName;
     }
 
-    public void setXName(String xName) {
+    public void setXName(String xName) { //sets the value of the xName variable with the provided string parameter
         this.xName = xName;
     }
 
@@ -71,15 +71,15 @@ public class State //serves as repo for game info - gameState, xName, oName, etc
         this.oName = oName;
     }
 
-    public int getBoardCell(int row, int col) {
+    public int getBoardCell(int row, int col) { //returns value of board cell at the specified row and column
         return this.board[row][col];
     }
 
-    public void setBoardCell(int row, int col, int value) {
+    public void setBoardCell(int row, int col, int value) {//sets value of board cell at the specified row and column with provided integer value
         this.board[row][col] = value;
     }
     
-    public void reset() {
+    public void reset() { //Set relevant state variables to their initial values
         this.gameState = Constants.STANDBY; //set game to standby
         this.whoseMove = Constants.X; //indicates x player turn, starts game with player x
         this.xName = ""; //resets x name

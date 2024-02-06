@@ -3,9 +3,9 @@ package tictactoe;
 public class EventLoop { //the code checks the values of its state variables and updates the user interface as required
 
     // Instance variables for the UI and State classes
-    State state = new State();
-    UI ui = new UI();
-    int row, col;
+    State state = new State(); //represents current state of tictactoe game
+    UI ui = new UI(); //represents the user interface for game - handling interactions with the user
+    int row, col; //used to store row and column values for users moves
 
     public static void main(String [] args) {
         EventLoop eventLoop = new EventLoop(); //instantiate instance of eventloop
@@ -14,7 +14,7 @@ public class EventLoop { //the code checks the values of its state variables and
 
     public void run() { 
         while (state.getGameState() != Constants.QUIT_PROGRAM) { // continuously checks the current game state
-            int gameState = state.getGameState(); 
+            int gameState = state.getGameState(); //retrieves current game state and stored in variable gameState
             if (gameState == Constants.STANDBY) {
                 state.setGameState(Constants.GET_X_NAME); 
 

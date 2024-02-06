@@ -15,9 +15,9 @@ public class UI //reflect the values of the state variables, updates the display
     }
 
     // Utility methods
-    public String getXOrO(int whoseMove) { //returns X if whose move is -1, O if 1, space character of neither
+    public String getXOrO(int whoseMove) { //returns X if whose move is -1, O if 1, space character if neither
         if (whoseMove == -1) {
-            return "X";
+             return "X";
         }else if (whoseMove == 1) {
             return "O";
         }else{
@@ -30,19 +30,19 @@ public class UI //reflect the values of the state variables, updates the display
     }
 
     public boolean isLegalMove(State state, int row, int col) { //Checks if move at row/column is legal
-        return 1 <= row && row <= Constants.BOARD_SIZE &&
-        1 <= col && col <= Constants.BOARD_SIZE &&
-        state.getBoardCell(row-1, col-1) == Constants.BLANK;
+        return 1 <= row && row <= Constants.BOARD_SIZE && //check row
+        1 <= col && col <= Constants.BOARD_SIZE && //check col
+        state.getBoardCell(row-1, col-1) == Constants.BLANK; //checks if cell is empty
     }
 
     // Prompt for input methods
-    public String promptForName(String player) {
+    public String promptForName(String player) { //reads user's input from console using Scanner
         System.out.printf(Constants.GET_PLAYER_NAME, player);
         return scanner.next();
     }
 
-    public int getMoveRow(int whoseMove, String xName, String oName) {
-        int row = 0;
+    public int getMoveRow(int whoseMove, String xName, String oName) { //prompts user for row placement
+        int row = 0; //loop around until gets valid val for row
         while (row <= 0 || row >= 4) {
             try {
                 System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
@@ -57,7 +57,7 @@ public class UI //reflect the values of the state variables, updates the display
         return row;
     }
 
-    public int getMoveCol(int whoseMove, String xName, String oName) {
+    public int getMoveCol(int whoseMove, String xName, String oName) { //prompts user for column placement
         int col = 0; //loop around until gets valid value for col
         while (col <= 0 || col >= 4) {
             try {

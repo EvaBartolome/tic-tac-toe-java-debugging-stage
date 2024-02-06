@@ -7,7 +7,7 @@ package tictactoe;
 public class Constants
 {
     // Valid board size
-    public static final int BOARD_SIZE = 3;
+    public static final int BOARD_SIZE = 3; //defines size of board (3x3)
 
     // Valid board values
     public static final int X = -1;    // Indicates an "X"
@@ -28,7 +28,7 @@ public class Constants
     public static final int GAME_OVER = 10;
     public static final int QUIT_PROGRAM = 11;
     
-    // Strings
+    // Strings, %s = placeholder for string
     public static final String DIVIDER_STRING = "|---|---|---|";
     public static final String BOARD_STRING = "| %s | %s | %s |";
     public static final String GET_PLAYER_NAME = "Player %s: What is your name? -->";
