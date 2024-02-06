@@ -43,15 +43,28 @@ public class UI //reflect the values of the state variables, updates the display
 
     public int getMoveRow(int whoseMove, String xName, String oName) { //prompts user for row placement
         int row = 0; //loop around until gets valid val for row
+        boolean isLegalMove = false;
+        while (isLegalMove != true) {
+            try {
+                System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
+                row = scanner.nextInt();
+                isLegalMove = true;
+            } catch (Exception e) {
+                System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                scanner.next();
+            }
+        }
         while (row <= 0 || row >= 4) {
             try {
                 System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
                 row = scanner.nextInt();
-                if (row <= 0 || row >= 4) { //only accepts 1, 2, 3
+                if (row <= 0 || row >= 4){
                     System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                    scanner.next();
                 }
             } catch (Exception e) {
-                System.out.println(Constants.INVALID_ROW_OR_COLUMN);    
+                System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                scanner.next();
             }
         }
         return row;
@@ -59,15 +72,28 @@ public class UI //reflect the values of the state variables, updates the display
 
     public int getMoveCol(int whoseMove, String xName, String oName) { //prompts user for column placement
         int col = 0; //loop around until gets valid value for col
+        boolean isLegalMove = false;
+        while (isLegalMove != true) {
+            try {
+                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
+                col = scanner.nextInt();
+                isLegalMove = true;
+            } catch (Exception e) {
+                System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                scanner.next();
+            }
+        }
         while (col <= 0 || col >= 4) {
             try {
-                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName)); //get information on current player and symbol
+                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
                 col = scanner.nextInt();
-                if (col <= 0 || col >= 4) { //only accepts 1, 2, 3
+                if (col <= 0 || col >= 4){
                     System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                    scanner.next();
                 }
             } catch (Exception e) {
                 System.out.println(Constants.INVALID_ROW_OR_COLUMN);
+                scanner.next();
             }
         }
         return col;

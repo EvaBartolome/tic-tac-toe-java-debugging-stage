@@ -74,7 +74,6 @@ public class EventLoop { //the code checks the values of its state variables and
             } else if (gameState == Constants.O_WINS) {
                 ui.printWinner(state);
                 state.setGameState(Constants.GAME_OVER);
-
             } else if (gameState == Constants.GAME_OVER) {
                 if (ui.startNewGame()) {
                     state.setGameState(Constants.STANDBY);
