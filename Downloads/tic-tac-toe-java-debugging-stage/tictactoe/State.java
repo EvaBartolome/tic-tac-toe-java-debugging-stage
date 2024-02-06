@@ -3,7 +3,7 @@ package tictactoe;
 /**
  * Tic-Tac-Toe state variables.
  */
-public class State //serves as repo for game info - gameState, xName, oName, etc.
+public class State //serves as repo for game info - gameState, xName, oName, etc. represents current state of tictactoe game
 {
     private int gameState = Constants.STANDBY; //current game state
     private int whoseMove = Constants.X; //keeps track of whose move it is
