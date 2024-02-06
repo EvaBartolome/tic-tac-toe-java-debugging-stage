@@ -1,6 +1,6 @@
 package tictactoe;
 
-public class EventLoop {
+public class EventLoop { //the code checks the values of its state variables and updates the user interface as required
 
     // Instance variables for the UI and State classes
     State state = new State();
@@ -13,11 +13,10 @@ public class EventLoop {
     }
 
     public void run() { 
-        while (state.getGameState() != Constants.QUIT_PROGRAM) {
-            
-            int gameState = state.getGameState();
+        while (state.getGameState() != Constants.QUIT_PROGRAM) { // continuously checks the current game state
+            int gameState = state.getGameState(); 
             if (gameState == Constants.STANDBY) {
-                state.setGameState(Constants.GET_X_NAME);
+                state.setGameState(Constants.GET_X_NAME); 
 
             } else if (gameState == Constants.GET_X_NAME) {
                 state.setXName(ui.promptForName("X"));
@@ -56,7 +55,6 @@ public class EventLoop {
                 } else {
                     state.setGameState(Constants.CHECK_IF_TIE);
                 }
-
             } else if (gameState == Constants.CHECK_IF_TIE) {
                 if (state.isTie()) {
                     ui.printTieGame();
@@ -69,7 +67,6 @@ public class EventLoop {
                         state.setGameState(Constants.GET_O_MOVE);
                     }
                 }
-
             } else if (gameState == Constants.X_WINS) {
                 ui.printWinner(state);
                 state.setGameState(Constants.GAME_OVER);

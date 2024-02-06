@@ -3,7 +3,7 @@ package tictactoe;
 /**
  * Tic-Tac-Toe state variables.
  */
-public class State
+public class State //serves as repo for game info - gameState, xName, oName, etc.
 {
     private int gameState = Constants.STANDBY;
     private int whoseMove = Constants.X;
@@ -39,19 +39,19 @@ public class State
         return true;
     }
 
-    public int getGameState() {
+    public int getGameState() { //current state of game: standby, get player names, making moves, etc.
         return gameState;
     }
 
-    public void setGameState(int gameState) {
+    public void setGameState(int gameState) { //updates the gameState field w/ new value
         this.gameState = gameState;
     }
 
-    public int getWhoseMove() {
+    public int getWhoseMove() { //Constants.X or Constants.O
         return whoseMove;
     }
 
-    public void setWhoseMove(int whoseMove) {
+    public void setWhoseMove(int whoseMove){
         this.whoseMove = whoseMove;
     }
 

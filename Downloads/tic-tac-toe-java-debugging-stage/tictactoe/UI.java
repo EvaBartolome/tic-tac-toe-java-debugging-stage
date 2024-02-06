@@ -4,17 +4,18 @@ import java.util.Scanner;
 /**
  * UI class
  */
-public class UI
+public class UI //reflect the values of the state variables, updates the display when change in state variables
+
 {
 
-    Scanner scanner;
+    Scanner scanner; //initializes scanner object
 
     public UI() {
         scanner = new Scanner(System.in);         
     }
 
     // Utility methods
-    public String getXOrO(int whoseMove) {
+    public String getXOrO(int whoseMove) { //returns X if whose move is -1, O if 1, space character of neither
         if (whoseMove == -1) {
             return "X";
         }else if (whoseMove == 1) {
@@ -24,11 +25,11 @@ public class UI
         }
     }
     
-        public String getPlayerName(int whoseMove, String xName, String yName) {
+        public String getPlayerName(int whoseMove, String xName, String yName) { //returns player name based on whoseMove
         return (whoseMove == -1) ? xName : yName;
     }
 
-    public boolean isLegalMove(State state, int row, int col) {
+    public boolean isLegalMove(State state, int row, int col) { //Checks if move at row/column is legal
         return 1 <= row && row <= Constants.BOARD_SIZE &&
         1 <= col && col <= Constants.BOARD_SIZE &&
         state.getBoardCell(row-1, col-1) == Constants.BLANK;
@@ -41,7 +42,7 @@ public class UI
     }
 
     public int getMoveRow(int whoseMove, String xName, String oName) {
-        int row=0;
+        int row = 0;
         while (row <= 0 || row >= 4) {
             try {
                 System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
@@ -57,10 +58,10 @@ public class UI
     }
 
     public int getMoveCol(int whoseMove, String xName, String oName) {
-        int col=0; //loop around until gets valid value for col
+        int col = 0; //loop around until gets valid value for col
         while (col <= 0 || col >= 4) {
             try {
-                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
+                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName)); //get information on current player and symbol
                 col = scanner.nextInt();
                 if (col <= 0 || col >= 4) { //only accepts 1, 2, 3
                     System.out.println(Constants.INVALID_ROW_OR_COLUMN);
@@ -75,7 +76,7 @@ public class UI
     public boolean startNewGame() {
         System.out.println(Constants.START_NEW_GAME);
         String yesOrNo = scanner.next(); //gets input
-        return yesOrNo.equals ("Y") || yesOrNo.equals ("y")|| yesOrNo.equals ("yes")|| yesOrNo.equals ("Yes"); //equals method for equality on a string
+        return yesOrNo.equals ("Y") || yesOrNo.equals ("y")|| yesOrNo.equals ("yes")|| yesOrNo.equals ("Yes"); //equals method for equality on a string (== compares memory addresses of objects, not actual content)
     }
 
     // Printing text methods
