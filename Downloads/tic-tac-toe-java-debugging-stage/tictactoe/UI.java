@@ -17,15 +17,15 @@ public class UI //reflect the values of the state variables, updates the display
     // Utility methods
     public String getXOrO(int whoseMove) { //returns X if whose move is -1, O if 1, space character if neither
         if (whoseMove == -1) {
-             return "X";
+            return "X";
         }else if (whoseMove == 1) {
             return "O";
         }else{
             return " ";
         }
     }
-    
-        public String getPlayerName(int whoseMove, String xName, String yName) { //returns player name based on whoseMove
+
+    public String getPlayerName(int whoseMove, String xName, String yName) { //returns player name based on whoseMove
         return (whoseMove == -1) ? xName : yName;
     }
 
@@ -43,28 +43,24 @@ public class UI //reflect the values of the state variables, updates the display
 
     public int getMoveRow(int whoseMove, String xName, String oName) { //prompts user for row placement
         int row = 0; //loop around until gets valid val for row
-        boolean isLegalMove = false;
-        while (isLegalMove != true) {
+        while (true) {
             try {
+                // Prompt the user for input
                 System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
                 row = scanner.nextInt();
-                isLegalMove = true;
-            } catch (Exception e) {
-                System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                scanner.next();
-            }
-        }
-        while (row <= 0 || row >= 4) {
-            try {
-                System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
-                row = scanner.nextInt();
-                if (row <= 0 || row >= 4){
+
+                // Check if the input is within the valid range
+                if (row < 1 || row > 3) {
+                    // If the input is invalid, display an error message
                     System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                    scanner.next();
+                } else {
+                    // If the input is valid, exit the loop prematurely
+                    break;
                 }
             } catch (Exception e) {
+                // If an exception occurs (e.g., non-integer input), display an error message
                 System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                scanner.next();
+                scanner.next(); // Consume the invalid input
             }
         }
         return row;
@@ -72,28 +68,24 @@ public class UI //reflect the values of the state variables, updates the display
 
     public int getMoveCol(int whoseMove, String xName, String oName) { //prompts user for column placement
         int col = 0; //loop around until gets valid value for col
-        boolean isLegalMove = false;
-        while (isLegalMove != true) {
+        while (true) {
             try {
-                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
-                col = scanner.nextInt();
-                isLegalMove = true;
-            } catch (Exception e) {
-                System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                scanner.next();
-            }
-        }
-        while (col <= 0 || col >= 4) {
-            try {
-                System.out.printf(Constants.GET_COL_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
-                col = scanner.nextInt();
-                if (col <= 0 || col >= 4){
+                // Prompt the user for input
+                System.out.printf(Constants.GET_ROW_MOVE, getXOrO(whoseMove), getPlayerName(whoseMove, xName, oName));
+                col = scanner.nextInt(); //read user input and assigns to variable col
+
+                // Check if the input is within the valid range
+                if (col < 1 || col > 3) {
+                    // If the input is invalid, display an error message
                     System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                    scanner.next();
+                } else {
+                    // If the input is valid, exit the loop
+                    break;
                 }
             } catch (Exception e) {
+                // If an exception occurs (e.g., non-integer input), display an error message
                 System.out.println(Constants.INVALID_ROW_OR_COLUMN);
-                scanner.next();
+                scanner.next(); // Consume the invalid input
             }
         }
         return col;
